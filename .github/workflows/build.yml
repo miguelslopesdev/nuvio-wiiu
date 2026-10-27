@@ -8,9 +8,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Dependencias
         run: |
-          dkp-pacman -Sy
-          dkp-pacman -Ss curl || true
-          dkp-pacman -S --noconfirm --needed wut wiiu-sdl2 wiiu-sdl2_ttf wiiu-curl ppc-zlib ppc-freetype
+          for i in 1 2 3 4 5 6; do
+            dkp-pacman -Sy && dkp-pacman -S --noconfirm --needed wut wiiu-sdl2 wiiu-sdl2_ttf wiiu-curl ppc-zlib ppc-freetype && exit 0
+            echo "Tentativa $i falhou, esperando..."
+            sleep 30
+          done
+          exit 1
       - name: json.hpp
         run: curl -L -o source/json.hpp https://github.com/nlohmann/json/releases/latest/download/json.hpp
       - name: Compilar
