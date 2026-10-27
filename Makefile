@@ -1,11 +1,11 @@
-
 # Nuvio Wii U - Makefile (devkitPPC + wut)
-.RECIPEPREFIX := >
-
 ifeq ($(strip $(DEVKITPRO)),)
 $(error "Defina DEVKITPRO")
 endif
 include $(DEVKITPRO)/wut/share/wut_rules
+
+# Precisa vir DEPOIS do include (as regras do devkitPro usam TAB)
+.RECIPEPREFIX := >
 
 TARGET   := nuvio
 SRC      := source
