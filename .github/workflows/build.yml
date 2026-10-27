@@ -1,5 +1,10 @@
 name: Build RPX
-on: [push, workflow_dispatch]
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
